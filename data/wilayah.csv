@@ -3,9 +3,9 @@ author:Youppie Arliansyah
 email:youppie@gmail.com
 tanggal_dibuat:2010-11-17
 nama_file:wilayah.txt
-deskripsi:Data Wilayah Indonesia, sumber data diambil dari sumbangan Wida Sari dari file group ID-PHP
+deskripsi:Data Wilayah (Propinsi, Kabupaten, Kecamatan) Indonesia, sumber data diambil dari sumbangan Wida Sari dari file group ID-PHP
 kegunaan:Demo
-lokasi:data/yopi/wilayah.txt
+lokasi:data/wilayah.txt
 primary_key:kode_wilayah
 sifat_tabel:master;hirarki
 struktur_tabel:kode_wilayah;nama_wilayah

@@ -4,14 +4,14 @@
  *
  * @author	Yopi <youppie@gmail.com>
  * @since	2010-11-17
+ * @last_update Wida Sari <wida.sari@yahoo.com> 2011-10-05 11:18
  **/
 
 class gdi
 {
-	private $path_data="data/yopi/";
-	function get_data($file_data)
+	function get_data($file_data, $output='html')
 	{
-		$handle=fopen($this->path_data.$file_data.'.txt',"r");
+		$handle=fopen(DATA_DIR.$file_data.'.txt',"r");
 
 		//ambil meta data;
 		fgets($handle);
@@ -22,8 +22,6 @@ class gdi
 			if (isset($itemmeta[1])) $meta[$itemmeta[0]]=$itemmeta[1];
 			else {$bacafile=0;}
 		}
-
-		//print_r($meta);
 
 		/**/
 		//ambil struktur data
@@ -51,5 +49,27 @@ class gdi
 		}
 		fclose($handle);
 		return $data;
+	}
+
+	function get_meta($file_data, $output)
+	{
+		$handle=fopen(DATA_DIR.$file_data.'.txt',"r");
+
+		//ambil meta data;
+		fgets($handle);
+		$bacafile=1;
+		$meta=Array();
+		while($bacafile){
+			$itemmeta=explode(":",fgets($handle));
+			if (isset($itemmeta[1])) $meta[$itemmeta[0]]=$itemmeta[1];
+			else {$bacafile=0;}
+		}
+
+		/**/
+		//ambil struktur data
+		$meta['struktur_tabel']=explode(";",trim($meta['struktur_tabel']));
+		fclose($handle);
+		return $meta;
+
 	}
 }
