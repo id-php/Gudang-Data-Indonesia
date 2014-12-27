@@ -25,8 +25,8 @@ T_textdomain(APP_ID);
 
 // Process query or get catalog
 $TITLE = 'Gudang Data Indonesia';
-$query = $_GET['q'];
-$output = $_GET['o'];
+$query = (isset($_GET['q']) ? $_GET['q'] : "");
+$output = (isset($_GET['o']) ? $_GET['o'] : "");
 if (isset($query))
 {
 	$gdi = new gdi();
@@ -41,6 +41,7 @@ if (isset($query))
 		if ($output == 'meta') $CONTENT = json_encode($meta);
 		$TITLE = $meta['deskripsi'];
 		$types = json_decode('{"html":"","meta":"","graph":"","csv":"","json":"","xml":""}', true);
+		$ACTION = true;
 		foreach ($types as $key => $val)
 		{
 			$ACTION .= sprintf('<li><a href="./%1$s?q=%2$s&o=%3$s">%4$s</a></li>',
@@ -59,6 +60,7 @@ else
 }
 
 // Further process if else
+$MENU = true;
 $MENU .= '<li><a href="./?">Katalog</a></li>';
 $MENU .= '<li><a href="#">Dataset baru</a></li>';
 $MENU = '<ul class="menu">' . $MENU . '</ul>';
@@ -70,7 +72,7 @@ if ($output == 'graph') include_once('graph.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="id" dir="ltr"" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="id" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><?php echo($TITLE); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
